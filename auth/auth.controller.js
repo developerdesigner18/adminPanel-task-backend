@@ -100,4 +100,15 @@ export const signin = async (req, res) => {
       error: `Unable to Login using email - ${email}`,
     });
   }
+
 };
+export const getuser = async (req,res) =>{
+  try {
+    console.log("req.body._id",req.params.id);
+    const data = await UserInfo.findById(req.params.id)
+    res.status(200).json({success:true,data:data });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+
+}

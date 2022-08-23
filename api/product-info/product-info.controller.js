@@ -13,6 +13,7 @@ export const addProduct = async (req, res) => {
 };
 export const ShowAllProduct = async (req, res) => {
   try {
+    console.log("res.user",res.user);
     const allCategories = await ProductInfo.find();
 
     res
@@ -53,5 +54,19 @@ export const deleteProduct = async function (req, res) {
     console.log("outside if");
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+export const ShowFindOneProduct = async (req, res) => {
+  try {
+    console.log("res.body.id ===> ",req.params)
+    // const {id} = req.body
+    const findCategories = await ProductInfo.findById(req.params.id);
+
+    res
+      .status(200)
+      .json({ massage: "Successfully Category added", findCategories });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
