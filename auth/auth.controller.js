@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
           "The email address you have entered is already associated with another account.",
       });
 
-    const newUser = new UserInfo({ ...req.body, adminRole: true });
+    const newUser = new UserInfo({ ...req.body, role: "AdminUser" });
 
     await newUser.save();
 
@@ -49,7 +49,7 @@ export const AddUser = async (req, res) => {
           "The email address you have entered is already associated with another account.",
       });
 
-    const newUser = new UserInfo({ ...req.body });
+    const newUser = new UserInfo({ ...req.body, role: "User" });
 
     await newUser.save();
 
@@ -100,15 +100,13 @@ export const signin = async (req, res) => {
       error: `Unable to Login using email - ${email}`,
     });
   }
-
 };
-export const getuser = async (req,res) =>{
+export const getuser = async (req, res) => {
   try {
-    console.log("req.body._id",req.params.id);
-    const data = await UserInfo.findById(req.params.id)
-    res.status(200).json({success:true,data:data });
+    console.log("req.body._id", req.params.id);
+    const data = await UserInfo.findById(req.params.id);
+    res.status(200).json({ success: true, data: data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-
-}
+};

@@ -12,10 +12,7 @@ const userInfoSchema = Schema(
     email: String,
     password: String,
     mobileNo: Number,
-    adminRole: {
-      type: Boolean,
-      default: false,
-    },
+    role: String,
     token: String,
     country: String,
     state: String,
