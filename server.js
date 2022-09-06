@@ -23,7 +23,7 @@ import { authRouter } from "./auth/authRouter.js";
 var config = {
   DB_URL:
     process.env.NODE_ENV == "development"
-      ? "mongodb://localhost:27017/task-database"
+      ? "mongodb+srv://emanta:Treasure%40%24EMANTA24@cluster0.2ituni6.mongodb.net/?retryWrites=true&w=majority  "
       : process.env.DB_URL,
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRE: process.env.JWT_EXPIRE,

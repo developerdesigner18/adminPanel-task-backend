@@ -3,7 +3,8 @@ import {
   signup,
   signin,
   AddUser,
-  getuser
+  getuser,
+  getAllUsers
   // resetPassword
 } from "./auth.controller.js";
 
@@ -13,4 +14,5 @@ authRouter.post("/signin", signin);
 authRouter.post("/signup", signup);
 authRouter.post("/AddUser", AddUser);
 authRouter.get("/getuser/:id", getuser);
+authRouter.get("/getAllUsers", getAllUsers);
 // authRouter.post("/resetpassword", resetPassword);

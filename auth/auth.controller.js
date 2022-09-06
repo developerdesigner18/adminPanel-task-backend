@@ -37,6 +37,8 @@ export const signup = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+//add user
 export const AddUser = async (req, res) => {
   try {
     const { email } = req.body;
@@ -58,6 +60,8 @@ export const AddUser = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+//sign in
 export const signin = async (req, res) => {
   const { email, password } = req.body;
   console.log(email);
@@ -80,9 +84,10 @@ export const signin = async (req, res) => {
         userExistence.token = token;
         await userExistence.save();
         const username_id = userExistence._id;
+        const role = userExistence.role;
         res
           .status(200)
-          .json({ massage: "Successfully Login", token, username_id });
+          .json({ massage: "Successfully Login", token, username_id ,  role});
       } else {
         return res.status(401).json({
           message:
@@ -101,6 +106,8 @@ export const signin = async (req, res) => {
     });
   }
 };
+
+//get user by id
 export const getuser = async (req, res) => {
   try {
     console.log("req.body._id", req.params.id);
@@ -110,3 +117,14 @@ export const getuser = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+//get all users list
+export const getAllUsers = async(req,res)=>{
+  try {
+    const getData = await UserInfo.find({role : "User"});
+    res.status(200).json({ success: true, data: getData });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+
+}
